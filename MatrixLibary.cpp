@@ -1,21 +1,21 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "pch.h" // деректива источника (lib)   
+#include "pch.h" // РґРµСЂРµРєС‚РёРІР° РёСЃС‚РѕС‡РЅРёРєР° (lib)
 #include <iostream>      
 #include "MatrixLibary.h"
 using namespace std;
 
-// произведение
+// СѓРјРЅРѕР¶РµРЅРёРµ
 int** multiplication(int** ptr_A, int** ptr_B, int size) 
 {
-	// Выделить память для массива указателей
-	int** ptr_C = new int* [size];//со
+	// Р’С‹РґРµР»РёС‚СЊ РїР°РјСЏС‚СЊ РґР»СЏ РјР°СЃСЃРёРІР° СѓРєР°Р·Р°С‚РµР»РµР№
+	int** ptr_C = new int* [size];//Г±Г®
 
-	// Выделить память для каждого указателя
+	// Р’С‹РґРµР»РёС‚СЊ РїР°РјСЏС‚СЊ РґР»СЏ РєР°Р¶РґРѕРіРѕ СѓРєР°Р·Р°С‚РµР»СЏ
 	for (int i = 0; i < size; i++)
 	{
 		ptr_C[i] = new int[size];
 	}
-	//операция
+	//РѕРїРµСЂР°С†РёСЏ
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < size; j++)
@@ -31,14 +31,15 @@ int** multiplication(int** ptr_A, int** ptr_B, int size)
 	return ptr_C;
 }
 
-// сумма
+// СЃСѓРјРјР°
 int** addition(int** ptr_A, int** ptr_B, int size) 
 {
-	int** ptr_C = new int* [size];//со
+	int** ptr_C = new int* [size];//Г±Г®
 	for (int i = 0; i < size; i++)
 	{
 		ptr_C[i] = new int[size];
 	}
+        //РѕРїРµСЂР°С†РёСЏ
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < size; j++)
@@ -50,7 +51,7 @@ int** addition(int** ptr_A, int** ptr_B, int size)
 	return ptr_C;
 }
 
-// разность
+// СЂР°Р·РЅРѕСЃС‚СЊ
 int** subtraction(int** ptr_A, int** ptr_B, int size) 
 {
 	int** ptr_C = new int* [size];
@@ -58,6 +59,7 @@ int** subtraction(int** ptr_A, int** ptr_B, int size)
 	{
 		ptr_C[i] = new int[size];
 	}
+        // РѕРїРµСЂР°С†РёСЏ
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < size; j++)
@@ -68,8 +70,7 @@ int** subtraction(int** ptr_A, int** ptr_B, int size)
 	}
 	return ptr_C;
 }
-
-//определение обратной матрицы (нуждается в доработке)
+//РѕРїСЂРµРґРµР»РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹(*Р’ Р РђР—Р РђР‘РћРўРљР•*)
 int** reverse(int** ptr_A, int size)
 {
 	int temp;
@@ -123,7 +124,7 @@ int** reverse(int** ptr_A, int size)
 
 	return ptr_A;
 }
-//транспортирование
+//С‚СЂР°РЅСЃРїРѕСЂС‚РёСЂРѕРІР°РЅРёРµ
 int** transpose(int** ptr_A, int size) 
 {
 	int tmp;
@@ -139,89 +140,3 @@ int** transpose(int** ptr_A, int size)
 	return ptr_A;
 }
 
-/*
-// НЕ НУЖНО !!!
-int** initMatrix(matrix* m, int size)  // создание матрицы
-{
-	int l = 0;
-	//int** ptr = (int**)malloc(size * sizeof(int*));
-
-	// Выделить память для массива указателей
-	int** ptr =  new int* [size];//со
-
-	 // Выделить память для каждого указателя
-	for (int i = 0; i < size; i++)
-	{
-		ptr[i] = new int[size];
-		//ptr[a] = (int*)malloc(size * sizeof(int));
-	}
-
-	//printf("elements:\n");
-
-	for (int i = 0; i < size; i++)
-	{
-		for (int j = 0; j < size; j++)
-		{
-			//while ((scanf("%lf", &l) != 1) || (getchar() != '\n'))
-			//{
-			//	printf("Error, try again\n");
-			//	while (getchar() != '\n');
-			//}
-			cin >> l;
-			ptr[i][j] = l;
-		}
-	}
-	m->razmer = size;
-	m->Mat_A = ptr;
-
-	return(ptr);
-	free(ptr);
-}*/
-
-/*
-// НЕ НКЖНО!!!
-void deletMatrix(int** ptr, int size)    // уничтожение
-{
-	for (int i = 0; i < size; i++)
-	{
-		free(ptr[i]);
-	}
-	free(ptr);
-}*/
-/*
-int** stepen(int** ptr_A, int size, int n) //  степень
-{
-
-	if (n < 0)  return NULL;
-	else if (n == 0)
-	{
-		int** ptr_C = (int**)malloc(size * sizeof(int*));
-
-		for (int a = 0; a < size; a++)
-		{
-			ptr_C[a] = (int*)malloc(size * sizeof(int));
-
-		}
-		for (int i = 0; i < size; i++)
-
-			for (int j = 0; j < size; j++)
-
-				if (i == j) ptr_C[i][j] = 1;
-
-				else ptr_C[i][j] = 0;
-
-
-		return ptr_C;
-	}
-	else if (n == 1) return ptr_A;
-
-
-	int** ptr_G = composition(ptr_A, ptr_A, size);
-	for (int i = 2; i < n; i++) {
-		ptr_G = composition(ptr_G, ptr_A, size);
-	}
-	return ptr_G;
-
-	free(ptr_G);
-
-}*/
